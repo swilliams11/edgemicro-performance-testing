@@ -15,10 +15,18 @@ imports:
 - path: edgemicro-network-template.jinja
 - path: edgemicro-firewall-template.jinja
 - path: edgemicro-template.jinja
+- path: edgemicro-target-vm-template.jinja
+- path: edgemicro-target-network-template.jinja
+- path: edgemicro-target-firewall-template.jinja
+- path: edgemicro-target-template.jinja
 - path: ./microgateway-config.txt
   name: microgateway-config.txt
 - path: ./org-env-config.yaml
   name: org-env-config.yaml
+- path: ./express-target/app.js
+  name: app.js
+- path: ./express-target/package.json
+  name: package.json
 
 resources:
 - name: edgemicro-setup
@@ -30,3 +38,13 @@ resources:
      zone: us-east1-b
      version: '4.17.01'
      license: ""
+- name: edgemicro-target
+  type: edgemicro-target-template.jinja
+  properties:
+     target-config: app.js
+     package-json: package.json
+     #yaml-file: amer-demo13-test-config.yaml
+     machineType: f1-micro
+     zone: us-east1-b
+     #version: '4.17.01'
+     #license: ""
